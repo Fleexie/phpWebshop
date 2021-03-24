@@ -1,18 +1,15 @@
 <?php
+require_once "conn/conn.php";
 session_start();
-if (empty($_SESSION["userID"])){
-    $_SESSION["userID"] = null;
-    $_SESSION["userName"] = null;
-    $_SESSION["userRole"] = null;
-}
 
-if (empty($_SESSION["cart"])){
+if (isset($_GET["empty"])){
     $_SESSION["cart"] = array();
     $_SESSION["total"] = array();
     $_SESSION["total_price"] = 0;
 }
-require_once "conn/conn.php";
+
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,20 +17,18 @@ require_once "conn/conn.php";
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WebShop</title>
+    <title>Webshop Cart</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body class="index">
+<body>
 <?php
-require_once "_includes/_include_nav.php"
+require_once "_includes/_include_nav.php";
+require_once "_includes/_include_cart.php";
 ?>
-<main>
 
-</main>
-<aside><?php include_once "_includes/_include_cart.php"?></aside>
 
 
 </body>

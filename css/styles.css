@@ -1,0 +1,233 @@
+/*##########################################*/
+/*Style Resets and other standard modifications*/
+/*##########################################*/
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style-position: inside;
+}
+
+
+/* Sikrer billeder er responsive */
+img {
+    display: block; /* Billeder er et element (laver linjeskift) */
+    max-width: 100%; /* Bredde må maks fylde 100% */
+    height: auto; /* Højden skal tilpasse sig */
+}
+
+/*##########################################*/
+/*General*/
+/*##########################################*/
+/*Variables*/
+:root{
+    --lightBG: #fefefe;
+    --lightGTxt: #7fff61;
+}
+
+body{
+    padding-top: 100px;
+    font-family: 'Open Sans', sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/*##########################################*/
+/*Nav*/
+/*##########################################*/
+/*nav {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+nav ul{
+    display: flex;
+}
+nav li{
+    list-style: none;
+}
+nav a{
+    text-decoration: none;
+    color: var(--lightGTxt);
+    background-color: #000;
+    padding: 1rem 1.3rem;
+    display: inline-block;
+}*/
+
+.multilevelnav{
+
+}
+.multilevelnav > div{
+    height: 0;
+    overflow-y: hidden;
+}
+.multilevelnav > div > ul{
+    display: flex;
+    justify-content: space-between;
+}
+.multilevelnav > div > ul > li{
+    width: 25%;
+}
+.multilevelnav li{
+    list-style: none;
+}
+#productDrop:hover, #productDrop:hover + div, #productDrop + div:hover{
+    height: unset;
+}
+
+#computerNav > ul, #monitorNav > ul, #mouseNav > ul, #keyboardNav > ul{
+    height: 0;
+    overflow-y: hidden;
+    background-color: lightgray;
+    border-left: #7fff61 solid 3px;
+    border-right: #7fff61 solid 3px;
+}
+#computerNav:hover > ul, #monitorNav:hover > ul, #mouseNav:hover > ul, #keyboardNav:hover > ul{
+    height: unset;
+    padding: .5rem;
+    width: max-content;
+}
+ul li ul li{
+    border-bottom: black dashed 1px;
+    padding: .2rem 0;
+}
+
+
+
+/*##########################################*/
+/*Index Page*/
+/*##########################################*/
+
+body.index{
+    display: grid;
+    grid-template-columns: auto 200px;
+    grid-template-areas: 'main aside';
+    padding-top: 50px;
+}
+aside{
+    grid-area: aside;
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+    position: relative;
+    border-left: solid black 1px;
+}
+
+.index .productCart{
+    flex-direction: column;
+    align-items: center;
+    border-bottom: dashed 1px lightgray;
+    padding: .3rem;
+}
+.index .productCart img{
+    width: 70%;
+}
+.index .empty-cart{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: .3rem 0;
+    position: fixed;
+    bottom: 0;
+    background-color: #f5f5f5;
+}
+.index .empty-cart h4{
+    width: 100%;
+}
+
+
+/*##########################################*/
+/*Products Page*/
+/*##########################################*/
+.productContainer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.productCard{
+    background-color: var(--lightBG);
+    max-width: 300px;
+    box-shadow: 0 1px 5px 1px rgba(0,0,0, 0.2);
+    padding: 1rem;
+    transition: all .1s ease-in-out;
+    margin: 1rem;
+}
+.productCard:hover{
+    box-shadow: 0 5px 10px 3px rgba(0,0,0, 0.2);
+}
+
+/*##########################################*/
+/*Shopping Cart Page*/
+/*##########################################*/
+.productCart{
+    display: flex;
+}
+.productCart img{
+    width: 50px;
+}
+
+/*##########################################*/
+/*Login Page*/
+/*##########################################*/
+
+.login, .register{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 2rem;
+    margin: 50px auto;
+    box-shadow: 0 0 10px 2px rgba(0,0,0, .2);
+}
+.login button, .register button{
+    padding: .5rem 1.5rem;
+    font-size: .8rem;
+    background-color: var(--lightGTxt);
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 3px 1px rgba(0,0,0, .2);
+}
+
+/*##########################################*/
+/*Control Panel Page*/
+/*##########################################*/
+.productListItem{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.productListItem:nth-of-type(odd){
+    background-color: #f5f5f5;
+}
+.productListItem img {
+    width: 50px;
+    margin: 0 10px;
+}
+
+@media screen and (min-width: 768px) {
+    /* Alt der ændres i tablet stående fra mobil */
+}
+
+@media screen and (min-width: 992px) {
+    /* Alt der ændres i tablet liggende fra mobil og tablet stående */
+}
+
+@media screen and (min-width: 1200px) {
+    /* Alt der ændres i computer fra mobil, tablet stående og tablet liggende */
+}
+
+@media print {
+    /* Alt der gælder for print specifikt */
+}
