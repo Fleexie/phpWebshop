@@ -18,12 +18,12 @@
         if ($result->num_rows > 0) {
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                print_r($row);
                 echo "<div class=\"productCart\">";
                 echo "<img src='img/$row[P_Img]' alt='$row[P_Name]'>";
                 echo "<h3>Name: " . $row["P_Name"]. "</h3><p>Price: <span class='price'>" . $row["P_Price"]. "</span>.- </p>";
                 echo "</div>";
                 echo "<p>Remove</p>";
+                echo "<p>Quantity: <a class=\"cartSubAdd\" href=\"actions/subAdd.php?type=subtract&id=". $row["P_ID"] ."\">-</a> <a class=\"cartSubAdd\" href=\"actions/subAdd.php?type=add&id=". $row["P_ID"] ."\">+</a></p>";
             }
         }
     }
@@ -34,6 +34,13 @@
     echo "<div class='total'>Total: " . $_SESSION['total_price'] . "</div>";
 
 
+    /*
+     * Checks if the SESSION for cart is not null.
+     * If it is not null then it displays some text and a form with a button and a hidden input.
+     * When clicked it calls the cart.php with empty=true parameter. To empty the cart through a function in that file.
+     *
+     * If the cart is null/empty then it displays that the cart is empty.
+     * */
     if($_SESSION["cart"] != null){
         echo '
         <div class="empty-cart">

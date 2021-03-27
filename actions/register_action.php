@@ -19,12 +19,29 @@ if (isset($_POST["submit"]))
 
     /*
      *################################################
-     *  NEED TO DO VALIDATION AND AUTHENTICATION!!
+     *  Validation and Authentication
      *################################################
      */
     require_once "functions.inc.php";
     if (emptyInputSignup($name, $email, $phone, $address, $city, $postcode, $country, $password, $passwordRepeat) !== false){
         header("location: ../login.php?error=emptyinput");
+        exit();
+    }
+    if (pregMatchName($name) !== false){
+        header("location: ../login.php?error=pregmatchname");
+        exit();
+    }
+    if (pregMatchPhone($phone) !== false){
+        header("location: ../login.php?error=pregmatchphone");
+        exit();
+    }
+
+    if (pregMatchEmail($email) !== false){
+        header("location: ../login.php?error=pregmatchemail");
+        exit();
+    }
+    if (pregMatchAddress($address, $city, $postcode, $country) !== false){
+        header("location: ../login.php?error=pregmatchaddress");
         exit();
     }
 

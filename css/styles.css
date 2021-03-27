@@ -29,10 +29,19 @@ img {
     --lightBG: #fefefe;
     --lightGTxt: #7fff61;
 }
+html{
+    background-color: lightgray;
+}
 
 body{
-    padding-top: 100px;
+    padding: 0 2rem;
+    padding-top: 120px;
     font-family: 'Open Sans', sans-serif;
+    max-width: 1700px;
+    min-height: 100vh;
+    margin: auto;
+    background-color: white;
+    box-shadow: 0 5px 10px 3px rgba(0,0,0, 0.2);
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'Montserrat', sans-serif;
@@ -42,26 +51,69 @@ h1,h2,h3,h4,h5,h6{
 /*##########################################*/
 /*Nav*/
 /*##########################################*/
-/*nav {
+nav {
     display: flex;
     justify-content: space-between;
     position: fixed;
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 1700px;
+    z-index: 1000;
+    background-color: white;
+    padding: .5rem 0;
+    box-shadow: 0 1px 5px 0px rgba(0,0,0, 0.2);
+
 }
 nav ul{
     display: flex;
+    flex-grow: 2;
 }
 nav li{
     list-style: none;
 }
 nav a{
+    position: relative;
     text-decoration: none;
-    color: var(--lightGTxt);
-    background-color: #000;
+    color: #0e133c;
+    background-color: white;
     padding: 1rem 1.3rem;
     display: inline-block;
-}*/
+    border-bottom: solid 1px #0e133c;
+    margin: 0 .5rem;
+}
+nav a::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: .1rem;
+    background-color: #0e133c;
+    transition: .1s ease-in-out all;
+}
+nav a:hover{
+    font-weight: bold;
+}
+nav a:hover::after{
+    width: 100%;
+}
+.cartCount{
+    position: absolute;
+    top: .4rem;
+    right: -.3rem;
+    font-size: .8rem;
+    display: flex;
+    margin: auto 1rem;
+    height: 1rem;
+    width: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: #7fff61;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px 0px #7fff61;
+}
 
 .multilevelnav{
 
@@ -81,7 +133,8 @@ nav a{
     list-style: none;
 }
 #productDrop:hover, #productDrop:hover + div, #productDrop + div:hover{
-    height: unset;
+    height: 25vh;
+    background-color: rgba(0,0,0, .05);
 }
 
 #computerNav > ul, #monitorNav > ul, #mouseNav > ul, #keyboardNav > ul{
@@ -108,17 +161,18 @@ ul li ul li{
 /*##########################################*/
 
 body.index{
-    display: grid;
-    grid-template-columns: auto 200px;
-    grid-template-areas: 'main aside';
-    padding-top: 50px;
+    position: relative;
 }
 aside{
-    grid-area: aside;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
-    position: relative;
     border-left: solid black 1px;
+    position: fixed;
+    right: 0;
+    top: 100px;
+    background-color: white;
+    padding: 1rem;
+    max-width: 300px;
 }
 
 .index .productCart{
@@ -132,16 +186,28 @@ aside{
 }
 .index .empty-cart{
     width: 100%;
+    max-width: 300px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     padding: .3rem 0;
     position: fixed;
-    bottom: 0;
+    bottom: 0px;
     background-color: #f5f5f5;
 }
 .index .empty-cart h4{
     width: 100%;
+}
+.adminButton{
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    background-color: #0e133c;
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+.adminButton:hover{
+    font-weight: bold;
 }
 
 
@@ -150,22 +216,88 @@ aside{
 /*##########################################*/
 .productContainer{
     width: 100%;
+    max-width: 1500px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    margin: auto;
 
 }
-.productCard{
-    background-color: var(--lightBG);
-    max-width: 300px;
-    box-shadow: 0 1px 5px 1px rgba(0,0,0, 0.2);
-    padding: 1rem;
-    transition: all .1s ease-in-out;
+/*.productCard{*/
+/*    background-color: var(--lightBG);*/
+/*    max-width: 300px;*/
+/*    box-shadow: 0 1px 5px 1px rgba(0,0,0, 0.2);*/
+/*    padding: 1rem;*/
+/*    transition: all .1s ease-in-out;*/
+/*    margin: 1rem;*/
+/*}*/
+/*.productCard:hover{*/
+/*    box-shadow: 0 5px 10px 3px rgba(0,0,0, 0.2);*/
+/*}*/
+
+.flipCard{
+    max-width: 250px;
+    width: 100%;
+    min-height: 400px;
+    perspective: 500px;
     margin: 1rem;
+    display: block;
 }
-.productCard:hover{
+.flipCardInner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-in-out;
     box-shadow: 0 5px 10px 3px rgba(0,0,0, 0.2);
+    border-radius: 10px;
 }
+
+.flipCard:hover .flipCardInner{
+    transform: rotateY(180deg);
+
+}
+
+.flipCardFront, .flipCardBack{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 10px;
+
+}
+
+.flipCardFront{
+
+}
+
+.flipCardBack{
+    transform: rotateY(180deg);
+}
+.cardPrice{
+    flex-grow: 2;
+}
+.cardDesc{
+    flex-grow: 2;
+}
+.cardButton{
+    text-decoration: none;
+    color: #0e133c;
+    border: solid 1px #0e133c;
+    padding: 0.5rem .8rem;
+    text-align: center;
+    border-radius: 5px;
+}
+.cardButton:hover{
+    font-weight: bold;
+}
+
 
 /*##########################################*/
 /*Shopping Cart Page*/
@@ -203,17 +335,51 @@ aside{
 /*##########################################*/
 /*Control Panel Page*/
 /*##########################################*/
+.products-CP, .addProduct{
+    max-width: 1500px;
+    padding: 1rem;
+    box-shadow: 0 0 3px 1px rgba(0,0,0, .2);
+    margin: 1rem auto;
+}
+
 .productListItem{
     width: 100%;
     display: flex;
     align-items: center;
 }
-.productListItem:nth-of-type(odd){
+.productListItem:nth-of-type(odd), .updateProductForm:nth-of-type(odd){
     background-color: #f5f5f5;
 }
 .productListItem img {
     width: 50px;
     margin: 0 10px;
+}
+.productListItem:hover + .updateProductForm, .updateProductForm:hover{
+    height: 100%;
+    padding: 1.2rem 1.6rem;
+    border-bottom: solid black 1px;
+}
+.updateProductForm{
+    height: 0px;
+    overflow-y: hidden;
+}
+.updateProductForm input, .updateProductForm textarea{
+    padding: .3rem;
+}
+.updateProductForm input:nth-of-type(1){
+    width: 5ch;
+}
+
+.updateProductForm button, .addProduct button{
+    padding: .2rem .3rem;
+    background-color: #0e133c;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.updateProductForm button:hover, .addProduct button:hover{
+    font-weight: bold;
 }
 
 @media screen and (min-width: 768px) {

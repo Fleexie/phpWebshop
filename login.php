@@ -1,16 +1,13 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Webshop Login</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-</head>
+<?php
+session_start();
+
+require_once "_includes/_include_head.php";
+?>
 <body>
+<?php
+require_once "_includes/_include_nav.php";
+?>
+
 <section class="login">
     <h2>Got an account? Login here</h2>
     <form action="actions/login_action.php" method="post" autocomplete="on">
@@ -31,7 +28,7 @@
                 echo '<p class="error">Login is not valid</p>';
                 break;
             default:
-                return;
+                break;
         }
     }
     ?>
@@ -50,7 +47,7 @@
         </div>
         <div>
             <label for="register_phone">Phone:</label>
-            <input type="tel" id="register_phone" name="register_phone" pattern="[0-9]{8}">
+            <input type="tel" id="register_phone" name="register_phone">
         </div>
         <div>
             <label for="register_address">Address:</label>
@@ -78,6 +75,7 @@
         </div>
         <button type="submit" name="submit">Register</button>
     </form>
+
     <?php
     if (isset($_GET["error"])){
         switch ($_GET["error"]){
@@ -97,7 +95,7 @@
                 echo '<p class="success">Account has been created</p>';
                 break;
             default:
-                return;
+                break;
         }
     }
     ?>

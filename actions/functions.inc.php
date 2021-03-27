@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * ##############################
+ * Signup functions
+ * Signup Validations
+ * ##############################
+*/
+
 function emptyInputSignup($name, $email, $phone, $address, $city, $postcode, $country, $password, $passwordRepeat) {
     $result;
     if (empty($name) || empty($email) || empty($phone) || empty($address) || empty($city) || empty($postcode) || empty($country) || empty($password) || empty($passwordRepeat)){
@@ -71,6 +79,60 @@ function createUser($conn, $name, $email, $phone, $address, $city, $postcode, $c
     exit();
 }
 
+/*
+ * ##############################
+ * Signup Preg_Match
+ * ##############################
+*/
+
+function pregMatchName ($name){
+    $result;
+    if (preg_match("(^[a-zA-Z\s]+$)", $name) == 0){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    return $result;
+}
+
+function pregMatchPhone($phone){
+    $result;
+    if (preg_match("([0-9]{8})", $phone) == 0){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    return $result;
+}
+
+function pregMatchEmail($mail){
+    $result;
+    if (preg_match("(^[a-zA-ZæøåÆØÅ0-9\.\-]+@+[a-zA-Z0-9\-]+([\.]{1})+[a-zA-Z]+$)", $mail) == 0){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    return $result;
+}
+
+function pregMatchAddress($address, $city, $postcode, $country){
+    $fullAddress = $address . ', ' . $city . ' ' . $postcode . ', ' . $country;
+    $result;
+    if (preg_match("(^[a-zA-ZæøåÆØÅ0-9\.\,\-\s]+$)", $fullAddress) == 0){
+        $result = true;
+    }else{
+        $result = false;
+    }
+    return $result;
+}
+
+/*
+ * ##############################
+ * Login functions
+ * Login Validations
+ * ##############################
+*/
+
 function emptyInputLogin($email, $password) {
     $result;
     if (empty($email) || empty($password)){
@@ -104,3 +166,4 @@ function loginUser($conn, $email, $passowrd){
         exit();
     }
 }
+

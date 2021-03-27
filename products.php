@@ -2,6 +2,12 @@
 session_start();
 require_once "conn/conn.php";
 
+/*
+ * Checks if there is a GET / parameter in the url for the category.
+ * if there is then it uses a switch statement to check if the category is any of the predefined categories,
+ * it will take the products associated with the specific category and show them with an SQL select.
+ * Else it will take all products with an SQL select.
+ * */
 if(isset($_GET["category"])){
     switch ($_GET["category"]){
         case 'computer':
@@ -30,37 +36,46 @@ if(isset($_GET["category"])){
     $result = $conn->query($sql);
 }
 
+require_once "_includes/_include_head.php";
 ?>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Products</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-</head>
 <body>
+
     <?php
     require_once "_includes/_include_nav.php"
     ?>
 
+
+
     <div class="productContainer">
+
         <?php
+        /*
+         * If there are more than 0 rows in the result variable then it will go to a while loop.
+         * */
         if ($result->num_rows > 0) {
-            // output data of each row
+            /*
+             * Uses a while to go through each row in the results that was fetched form the database.
+             * It then shows them on products page
+             * */
             while($row = $result->fetch_assoc()) {
-                echo "<div class=\"productCard\">";
-                echo "<img src='img/$row[P_Img]' alt='$row[P_Name]'><br>";
-                echo "Name: " . $row["P_Name"]. "<br> Price: " . $row["P_Price"]. ".- <br>";
-                echo "Description " . $row["P_Desc"];
-                echo "<a href='add-to-cart.php?id=" . $row["P_ID"] ."'>Add to cart</a>";
-                echo "</div>";
+                echo '
+                <div class="flipCard">
+                    <div class="flipCardInner">
+                        <div class="flipCardFront">
+                            <img src="img/'. $row["P_Img"] .'" alt="'. $row["P_Name"] .'" class="cardImg">
+                            <h3 class="cardHL">'. $row["P_Name"] .'</h3>
+                            <span class="cardPrice">'. $row["P_Price"] .' .-</span>
+                            <a href="add-to-cart.php?id='. $row["P_ID"] .'" class="cardButton">Add to cart</a>
+                        </div>
+                        <div class="flipCardBack">
+                            <h3 class="cardHL">'. $row["P_Name"] .'</h3>
+                            <span class=cardPrice">'. $row["P_Price"] .' .-</span>
+                            <p class="cardDesc">'.$row["P_Desc"].'</p>
+                            <a href="add-to-cart.php?id='. $row["P_ID"] .'" class="cardButton">Add to cart</a>
+                        </div>
+                    </div>
+                </div>
+                ';
             }
         } else {
             echo "0 results";
