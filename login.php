@@ -8,13 +8,17 @@ require_once "_includes/_include_head.php";
 require_once "_includes/_include_nav.php";
 ?>
 
-<section class="login">
+<section class="register">
     <h2>Got an account? Login here</h2>
     <form action="actions/login_action.php" method="post" autocomplete="on">
-        <label for="login_username">Email:</label>
-        <input type="email" id="login_username" name="login_username">
-        <label for="login_password">Password:</label>
-        <input type="password" id="login_password" name="login_password">
+        <div>
+            <input type="email" id="login_username" name="login_username" required>
+            <label for="login_username">Email:</label>
+        </div>
+        <div>
+            <input type="password" id="login_password" name="login_password" required>
+            <label for="login_password">Password:</label>
+        </div>
         <button type="submit" name="submit">Login</button>
     </form>
 
@@ -38,40 +42,40 @@ require_once "_includes/_include_nav.php";
     <h2>Register Here</h2>
     <form action="actions/register_action.php" method="post" autocomplete="on">
         <div>
+            <input type="text" id="register_name" name="register_name" required>
             <label for="register_name">Name:</label>
-            <input type="text" id="register_name" name="register_name">
         </div>
         <div>
+            <input type="email" id="register_email" name="register_email" required>
             <label for="register_email">Email:</label>
-            <input type="email" id="register_email" name="register_email">
         </div>
         <div>
+            <input type="tel" id="register_phone" name="register_phone" required>
             <label for="register_phone">Phone:</label>
-            <input type="tel" id="register_phone" name="register_phone">
         </div>
         <div>
+            <input type="text" id="register_address" name="register_address" required>
             <label for="register_address">Address:</label>
-            <input type="text" id="register_address" name="register_address">
         </div>
         <div>
+            <input type="text" id="register_city" name="register_city" required>
             <label for="register_city">City:</label>
-            <input type="text" id="register_city" name="register_city">
         </div>
         <div>
+            <input type="number" id="register_postcode" name="register_postcode" required>
             <label for="register_postcode">PostCode:</label>
-            <input type="number" id="register_postcode" name="register_postcode">
         </div>
         <div>
+            <input type="text" id="register_country" name="register_country" required>
             <label for="register_country">Country:</label>
-            <input type="text" id="register_country" name="register_country">
         </div>
         <div>
+            <input type="password" id="register_password" name="register_password" required>
             <label for="register_password">Password:</label>
-            <input type="password" id="register_password" name="register_password">
         </div>
         <div>
+            <input type="password" id="register_password_repeat" name="register_password_repeat" required>
             <label for="register_password_repeat">Repeat password:</label>
-            <input type="password" id="register_password_repeat" name="register_password_repeat">
         </div>
         <button type="submit" name="submit">Register</button>
     </form>

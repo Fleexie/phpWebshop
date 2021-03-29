@@ -29,8 +29,23 @@ require_once "_includes/_include_nav.php";
     }
     ?>
 
+    <div class="heroSection">
+        <img src="img/indexHero.jpg" alt="Laptop">
+        <h1>Welcome to TechMore, <br>
+            The place for all of your needs regarding technology.</h1>
+    </div>
+
+    <div class="intro">
+        At TechMore we offer you the highest quality tech products. <br>
+        Our main focus of products are laptops, monitors, keyboard and mouse.
+    </div>
+    <div class="products">
+        <h2>Products</h2>
+        <?php
+        require_once "multi-level-navigation.php";
+        ?>
+    </div>
 </main>
-<aside><?php include_once "_includes/_include_cart.php"?></aside>
 
 
 </body>

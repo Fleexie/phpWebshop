@@ -12,7 +12,7 @@ To ensure that the page will be working please follow the following steps.
 6. Run the solution.
 
 Additional information to check if certain features works.
-If you want to use admin login to check the specific features admins
+If you want to use admin login to check the specific features for admins,
 use the following login:
 * **username/email:** admin@webshop.com
 * **password:** admin123
