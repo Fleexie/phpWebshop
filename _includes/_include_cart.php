@@ -22,7 +22,6 @@
                 echo "<img src='img/$row[P_Img]' alt='$row[P_Name]'>";
                 echo "<h3>Name: " . $row["P_Name"]. "</h3><p>Price: <span class='price'>" . $row["P_Price"]. "</span>.- </p>";
                 echo "</div>";
-                echo "<p>Remove</p>";
                 echo "<p>Quantity: <a class=\"cartSubAdd\" href=\"actions/subAdd.php?type=subtract&id=". $row["P_ID"] ."\">-</a> <a class=\"cartSubAdd\" href=\"actions/subAdd.php?type=add&id=". $row["P_ID"] ."\">+</a></p>";
             }
         }

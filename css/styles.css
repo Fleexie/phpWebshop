@@ -390,6 +390,9 @@ body.index{
 /*##########################################*/
 /*Control Panel Page*/
 /*##########################################*/
+.cl-hl{
+    margin: 1rem 0;
+}
 .products-CP, .addProduct{
     max-width: 1500px;
     padding: 1rem;
@@ -401,6 +404,7 @@ body.index{
     width: 100%;
     display: flex;
     align-items: center;
+    padding: .3rem;
 }
 .productListItem:nth-of-type(odd), .updateProductForm:nth-of-type(odd){
     background-color: #f5f5f5;

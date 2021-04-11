@@ -73,8 +73,8 @@ $result = $conn->query($sql);
 <?php
 
     require_once "conn/conn.php";
-    $sql = "SELECT * FROM Products";
-    $result = $conn->query($sql);
+//    $sql = "SELECT * FROM Products";
+//    $result = $conn->query($sql);
 
     getCategories($conn);
     function getCategories($conn){

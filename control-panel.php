@@ -15,7 +15,10 @@ require_once "_includes/_include_head.php";
 <?php
 include_once "_includes/_include_nav.php";
 ?>
-Hello There Admin
+
+<h2>Hello there <?php
+    $_SESSION["userName"];
+    ?> Welcome to the admin panel.</h2>
 
 <!--
 TODO ADD UPLOAD IMAGE FUNCTION
@@ -24,7 +27,7 @@ TODO ADD UPLOAD IMAGE FUNCTION
 <main>
     <h1></h1>
     <section class="products-CP">
-        <h2>List of products</h2>
+        <h2 class="cp-hl">List of products</h2>
         <?php
         if ($result->num_rows > 0) {
             // output data of each row
@@ -57,6 +60,7 @@ TODO ADD UPLOAD IMAGE FUNCTION
             <option value="Monitor">Monitor</option>
         </select>
         <button type="submit" name="submit">Update Product</button>
+        <a href="./actions/removeProduct.php?pid='.$row["P_ID"].'&submit">Delete</a>
     </form>
                 ';
             }

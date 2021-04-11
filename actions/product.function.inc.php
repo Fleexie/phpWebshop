@@ -47,3 +47,17 @@ function addProduct($conn, $p_name, $p_price, $p_img, $p_description, $p_type, $
     header("location: ../control-panel.php?success=productadded");
     exit();
 }
+
+function removeProduct($conn, $pid){
+    $sql = "DELETE FROM products WHERE P_Id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if (!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../control-panel.php?error=stmtfailed");
+        exit();
+    }
+    mysqli_stmt_bind_param($stmt, 'i', $pid);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../control-panel.php?success=productadded");
+    exit();
+}

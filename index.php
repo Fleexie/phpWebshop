@@ -1,16 +1,5 @@
 <?php
-session_start();
-if (empty($_SESSION["userID"])){
-    $_SESSION["userID"] = null;
-    $_SESSION["userName"] = null;
-    $_SESSION["userRole"] = null;
-}
-
-if (empty($_SESSION["cart"])){
-    $_SESSION["cart"] = array();
-    $_SESSION["total"] = array();
-    $_SESSION["total_price"] = 0;
-}
+require_once "_includes/_session.php";
 require_once "conn/conn.php";
 require_once "_includes/_include_head.php";
 
